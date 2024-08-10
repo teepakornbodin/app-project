@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Home = () => {
+const camera = () => {
   return (
     <View>
-      <Text className='text-xl'>Home</Text>
+      <Text>camera</Text>
     </View>
   )
 }
 
-export default Home
+export default camera
