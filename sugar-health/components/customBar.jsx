@@ -1,9 +1,16 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { Ionicons } from '@expo/vector-icons'
 
 const Custom = ({ state, descriptors, navigation }) => {
+
+  const icon = ({
+    index: (props)=> <Ionicons name='home' {...props}/>,
+    calendar: (props)=> <Ionicons name='calendar-clear' {...props}/>
+  })
+
   return (
-    <View className='flex-row mx-2 bottom-4 py-4 justify-between items-center shadow-md rounded-[30px]'>
+    <View className='flex-row px-2 bottom-4 py-6 justify-between items-center border-t'>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -36,16 +43,22 @@ const Custom = ({ state, descriptors, navigation }) => {
 
         return (
           <TouchableOpacity
-            key={route.key}
+            key={route.name}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            className='text-2xl'
+            className='justify-center items-center'
           >
-            <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
+            {
+              icon[route.name] && icon[route.name] ({
+                color: '#000000',
+                size: 26,
+              })
+            }
+            <Text className={isFocused ? 'text-black text-[10px]' : 'text-gray-500 text-[10px]'}>
               {label}
             </Text>
           </TouchableOpacity>
